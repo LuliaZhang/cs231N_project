@@ -46,16 +46,16 @@ test_size = total_size - training_size - validation_size
 training, validation, test = torch.utils.data.random_split(image_datasets, [training_size, validation_size, test_size])
 
 #Size all these data for more efficient dev cycle
-training_half1, _ = torch.utils.data.random_split(training, [training_size//10, training_size - training_size // 10])
-validation_half1, _ = torch.utils.data.random_split(validation, [validation_size//10, validation_size - validation_size // 10])
+# training_half1, _ = torch.utils.data.random_split(training, [training_size//10, training_size - training_size // 10])
+# validation_half1, _ = torch.utils.data.random_split(validation, [validation_size//10, validation_size - validation_size // 10])
 
 #Load data with dataloaders, define batch_size here
 trainingLoaders = torch.utils.data.DataLoader(training, batch_size=16, shuffle=True)
 validationLoaders = torch.utils.data.DataLoader(validation, batch_size=16, shuffle=True)
 testLoaders = torch.utils.data.DataLoader(test, batch_size=16, shuffle=True)
 
-trainingHalf1Loaders = torch.utils.data.DataLoader(training_half1, batch_size=4, shuffle=True)
-validationHalf1Loaders = torch.utils.data.DataLoader(validation_half1, batch_size=4, shuffle=True)
+# trainingHalf1Loaders = torch.utils.data.DataLoader(training_half1, batch_size=4, shuffle=True)
+# validationHalf1Loaders = torch.utils.data.DataLoader(validation_half1, batch_size=4, shuffle=True)
 
 print("Training Data Length: ", len(training))
 print("Validation Data Length: ", len(validation))
@@ -97,8 +97,8 @@ def train_part34(model, optimizer, epochs=1):
     """
     model = model.to(device=device)  # move the model parameters to CPU/GPU
     for e in range(epochs):
-        # for t, (x, y) in enumerate(tqdm(trainingLoaders)):
-        for t, (x, y) in enumerate(tqdm(trainingHalf1Loaders)):
+        for t, (x, y) in enumerate(tqdm(trainingLoaders)):
+        # for t, (x, y) in enumerate(tqdm(trainingHalf1Loaders)):
             model.train()  # put model to training mode
             x = x.to(device=device, dtype=dtype)  # move to device, e.g. GPU
             y = y.to(device=device, dtype=torch.long)
@@ -121,8 +121,8 @@ def train_part34(model, optimizer, epochs=1):
             if t % print_every == 0:
                 print('Iteration %d, loss = %.4f' % (t, loss.item()))
                 train_losses.append(loss.item())
-                # check_accuracy_part34(validationLoaders, model)
-                check_accuracy_part34(validationHalf1Loaders, model)
+                check_accuracy_part34(validationLoaders, model)
+                # check_accuracy_part34(validationHalf1Loaders, model)
                 print()
 
 def flatten(x):
