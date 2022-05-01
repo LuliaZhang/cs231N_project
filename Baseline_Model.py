@@ -46,12 +46,9 @@ test_size = total_size - training_size - validation_size
 training, validation, test = torch.utils.data.random_split(image_datasets, [training_size, validation_size, test_size])
 
 #Size all these data for more efficient dev cycle
-training_half1, _ = torch.utils.data.random_split(training, [training_size//5, training_size - training_size // 5], 
-                                                           generator=torch.Generator().manual_seed(42))
-validation_half1, _ = torch.utils.data.random_split(validation, [validation_size//5, validation_size - validation_size // 5], 
-                                                           generator=torch.Generator().manual_seed(42))
-test_half1, _ = torch.utils.data.random_split(test, [test_size//5, test_size - test_size // 5], 
-                                                           generator=torch.Generator().manual_seed(42))
+training_half1, _ = torch.utils.data.random_split(training, [training_size//5, training_size - training_size // 5])
+validation_half1, _ = torch.utils.data.random_split(validation, [validation_size//5, validation_size - validation_size // 5])
+test_half1, _ = torch.utils.data.random_split(test, [test_size//5, test_size - test_size // 5])
 
 #Load data with dataloaders, define batch_size here
 trainingLoaders = torch.utils.data.DataLoader(training, batch_size=16, shuffle=True)
