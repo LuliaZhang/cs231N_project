@@ -46,9 +46,9 @@ test_size = total_size - training_size - validation_size
 training, validation, test = torch.utils.data.random_split(image_datasets, [training_size, validation_size, test_size])
 
 #Size all these data for more efficient dev cycle
-training_half1, _ = torch.utils.data.random_split(training, [training_size//5, training_size - training_size // 5])
-validation_half1, _ = torch.utils.data.random_split(validation, [validation_size//5, validation_size - validation_size // 5])
-test_half1, _ = torch.utils.data.random_split(test, [test_size//5, test_size - test_size // 5])
+training_half1, _ = torch.utils.data.random_split(training, [training_size//10, training_size - training_size // 10])
+validation_half1, _ = torch.utils.data.random_split(validation, [validation_size//10, validation_size - validation_size // 10)
+test_half1, _ = torch.utils.data.random_split(test, [test_size//10, test_size - test_size // 10])
 
 #Load data with dataloaders, define batch_size here
 trainingLoaders = torch.utils.data.DataLoader(training, batch_size=16, shuffle=True)
@@ -193,7 +193,7 @@ plt.plot(train_losses,label="train")
 plt.xlabel("iterations")
 plt.ylabel("Loss")
 plt.legend()
-plt.show()
+plt.savefig('Training_loss1.png')
 
 plt.figure(figsize=(10,5))
 plt.title("Validation Accuracy")
@@ -201,6 +201,6 @@ plt.plot(val_acc, label="val")
 plt.xlabel("iterations")
 plt.ylabel("Acc")
 plt.legend()
-plt.show()
+plt.savefig('Accuracy1.png')
 
 check_accuracy_part34(tqdm(testLoaders), model)
