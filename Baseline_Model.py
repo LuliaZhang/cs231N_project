@@ -43,15 +43,31 @@ total_size = len(image_datasets)
 training_size = int(total_size * 0.8)
 validation_size = int(total_size * 0.1)
 test_size = total_size - training_size - validation_size
-training, validation, test = torch.utils.data.random_split(image_datasets, [training_size//5, validation_size//5, test_size//5])
+training, validation, test = torch.utils.data.random_split(image_datasets, [training_size, validation_size, test_size])
+
+#Size all these data for more efficient dev cycle
+training_half1, _ = torch.utils.data.random_split(training, [training_size//5, training_size - training_size // 5], 
+                                                           generator=torch.Generator().manual_seed(42))
+validation_half1, _ = torch.utils.data.random_split(validation, [validation_size//5, validation_size - validation_size // 5], 
+                                                           generator=torch.Generator().manual_seed(42))
+test_half1, _ = torch.utils.data.random_split(test, [test_size//5, test_size - test_size // 5], 
+                                                           generator=torch.Generator().manual_seed(42))
 
 #Load data with dataloaders, define batch_size here
 trainingLoaders = torch.utils.data.DataLoader(training, batch_size=16, shuffle=True)
 validationLoaders = torch.utils.data.DataLoader(validation, batch_size=16, shuffle=True)
 testLoaders = torch.utils.data.DataLoader(test, batch_size=16, shuffle=True)
+
+trainingHalf1Loaders = torch.utils.data.DataLoader(training_half1, batch_size=4, shuffle=True)
+validationHalf1Loaders = torch.utils.data.DataLoader(validation_half1, batch_size=4, shuffle=True)
+testHalf1Loaders = torch.utils.data.DataLoader(test_half1, batch_size=4, shuffle=True)
+
 print("Training Data Length: ", len(training))
 print("Validation Data Length: ", len(validation))
 print("Test Data Length: ", len(test))
+
+print("TrainingHalf1 Data Length: ", len(training_half1))
+print("ValidationHalf1 Data Length: ", len(validation_half1))
 
 
 ##############Train##############
@@ -86,7 +102,8 @@ def train_part34(model, optimizer, epochs=1):
     """
     model = model.to(device=device)  # move the model parameters to CPU/GPU
     for e in range(epochs):
-        for t, (x, y) in enumerate(tqdm(trainingLoaders)):
+        # for t, (x, y) in enumerate(tqdm(trainingLoaders)):
+        for t, (x, y) in enumerate(tqdm(trainingHalf1Loaders)):
             model.train()  # put model to training mode
             x = x.to(device=device, dtype=dtype)  # move to device, e.g. GPU
             y = y.to(device=device, dtype=torch.long)
@@ -109,7 +126,8 @@ def train_part34(model, optimizer, epochs=1):
             if t % print_every == 0:
                 print('Iteration %d, loss = %.4f' % (t, loss.item()))
                 train_losses.append(loss.item())
-                check_accuracy_part34(validationLoaders, model)
+                # check_accuracy_part34(validationLoaders, model)
+                check_accuracy_part34(validationHalf1Loaders, model)
                 print()
 
 def flatten(x):
