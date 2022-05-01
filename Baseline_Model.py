@@ -48,7 +48,6 @@ training, validation, test = torch.utils.data.random_split(image_datasets, [trai
 #Size all these data for more efficient dev cycle
 training_half1, _ = torch.utils.data.random_split(training, [training_size//10, training_size - training_size // 10])
 validation_half1, _ = torch.utils.data.random_split(validation, [validation_size//10, validation_size - validation_size // 10)
-test_half1, _ = torch.utils.data.random_split(test, [test_size//10, test_size - test_size // 10])
 
 #Load data with dataloaders, define batch_size here
 trainingLoaders = torch.utils.data.DataLoader(training, batch_size=16, shuffle=True)
@@ -57,7 +56,6 @@ testLoaders = torch.utils.data.DataLoader(test, batch_size=16, shuffle=True)
 
 trainingHalf1Loaders = torch.utils.data.DataLoader(training_half1, batch_size=4, shuffle=True)
 validationHalf1Loaders = torch.utils.data.DataLoader(validation_half1, batch_size=4, shuffle=True)
-testHalf1Loaders = torch.utils.data.DataLoader(test_half1, batch_size=4, shuffle=True)
 
 print("Training Data Length: ", len(training))
 print("Validation Data Length: ", len(validation))
