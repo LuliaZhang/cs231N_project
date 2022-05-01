@@ -61,8 +61,8 @@ print("Training Data Length: ", len(training))
 print("Validation Data Length: ", len(validation))
 print("Test Data Length: ", len(test))
 
-print("TrainingHalf1 Data Length: ", len(training_half1))
-print("ValidationHalf1 Data Length: ", len(validation_half1))
+# print("TrainingHalf1 Data Length: ", len(training_half1))
+# print("ValidationHalf1 Data Length: ", len(validation_half1))
 
 
 ##############Train##############
