@@ -43,7 +43,7 @@ total_size = len(image_datasets)
 training_size = int(total_size * 0.8)
 validation_size = int(total_size * 0.1)
 test_size = total_size - training_size - validation_size
-training, validation, test = torch.utils.data.random_split(image_datasets, [training_size, validation_size, test_size])
+training, validation, test = torch.utils.data.random_split(image_datasets, [training_size//5, validation_size//5, test_size//5])
 
 #Load data with dataloaders, define batch_size here
 trainingLoaders = torch.utils.data.DataLoader(training, batch_size=16, shuffle=True)
@@ -169,5 +169,23 @@ learning_rate = 0.001
 optimizer = optim.Adam(model.parameters(), lr=learning_rate)
 
 train_part34(model, optimizer, epochs=1)
+
+torch.save(model, 'model1.pth')
+
+plt.figure(figsize=(10,5))
+plt.title("Training Loss")
+plt.plot(train_losses,label="train")
+plt.xlabel("iterations")
+plt.ylabel("Loss")
+plt.legend()
+plt.show()
+
+plt.figure(figsize=(10,5))
+plt.title("Validation Accuracy")
+plt.plot(val_acc, label="val")
+plt.xlabel("iterations")
+plt.ylabel("Acc")
+plt.legend()
+plt.show()
 
 check_accuracy_part34(tqdm(testLoaders), model)
