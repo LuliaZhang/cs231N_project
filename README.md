@@ -1,1 +1,1 @@
-# cs231N_project
+# Diabetic_Retinopathy_Progression_Recognition_Using_Deep_Learning_Method
