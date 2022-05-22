@@ -9,7 +9,7 @@ import PIL.Image
 import matplotlib.pyplot as plt
 from sklearn.utils import class_weight
 from sklearn.metrics import confusion_matrix, cohen_kappa_score
-from tensorflow import keras
+# from tensorflow import keras
 from keras import backend as K
 from keras.models import Model
 from keras import optimizers, applications
@@ -22,7 +22,7 @@ from keras_efficientnets import EfficientNetB5
 
 # Set seeds to make the experiment more reproducible.
 import tensorflow as tf
-import tensorflow_datasets as tfds
+# import tensorflow_datasets as tfds
 
 def seed_everything(seed=0):
     random.seed(seed)
