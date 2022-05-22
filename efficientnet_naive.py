@@ -124,7 +124,7 @@ for i in range(-5, 0):
 #class_weights = class_weight.compute_class_weight('balanced', np.unique(train['diagnosis'].astype('int').values), train['diagnosis'].astype('int').values)
 
 metric_list = ["accuracy"]
-optimizer = keras.optimizers.Adam(lr=WARMUP_LEARNING_RATE)
+optimizer = optimizers.Adam(lr=WARMUP_LEARNING_RATE)
 model.compile(optimizer=optimizer, loss="categorical_crossentropy",  metrics=metric_list)
 model.summary()
 
@@ -149,7 +149,7 @@ es = EarlyStopping(monitor='val_loss', mode='min', patience=ES_PATIENCE, restore
 rlrop = ReduceLROnPlateau(monitor='val_loss', mode='min', patience=RLROP_PATIENCE, factor=DECAY_DROP, min_lr=1e-6, verbose=1)
 
 callback_list = [es, rlrop]
-optimizer = keras.optimizers.Adam(lr=LEARNING_RATE)
+optimizer = optimizers.Adam(lr=LEARNING_RATE)
 model.compile(optimizer=optimizer, loss="categorical_crossentropy",  metrics=metric_list)
 model.summary()
 
