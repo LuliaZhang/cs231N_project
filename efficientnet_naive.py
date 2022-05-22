@@ -9,16 +9,16 @@ import PIL.Image
 import matplotlib.pyplot as plt
 from sklearn.utils import class_weight
 from sklearn.metrics import confusion_matrix, cohen_kappa_score
-# from tensorflow import keras
+from tensorflow import keras
 from keras import backend as K
-from keras.models import Model
+from tensorflow.keras.models import Model
 from keras import optimizers, applications
 from keras.preprocessing.image import ImageDataGenerator
 from keras.callbacks import EarlyStopping, ReduceLROnPlateau, Callback
-from keras.layers import Dense, Dropout, GlobalAveragePooling2D, Input
+from tensorflow.keras.layers import Dense, Dropout, GlobalAveragePooling2D, Input
 from tensorflow.keras.utils import to_categorical
 
-from keras_efficientnets import EfficientNetB5
+from tensorflow.keras.applications.keras_efficientnets import EfficientNetB5
 
 # Set seeds to make the experiment more reproducible.
 import tensorflow as tf
