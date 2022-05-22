@@ -63,9 +63,9 @@ def kappa(y_true, y_pred, n_classes=5):
     return kappa_score
 
 
-train_dir = '/home/ubuntu/dataset/outputs/train'
-val_dir = '/home/ubuntu/dataset/outputs/val'
-test_dir = '/home/ubuntu/dataset/outputs/test'
+train_dir = '/home/ubuntu/dataset_test/outputs_exp/train'
+val_dir = '/home/ubuntu/dataset_test/outputs_exp/val'
+test_dir = '/home/ubuntu/dataset_test/outputs_exp/test'
 train_datagen=ImageDataGenerator(rescale=1./255, 
                                  horizontal_flip=False,
                                  vertical_flip=False)
