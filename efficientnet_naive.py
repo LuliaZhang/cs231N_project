@@ -20,7 +20,7 @@ from keras.callbacks import EarlyStopping, ReduceLROnPlateau, Callback
 from tensorflow.keras.layers import Dense, Dropout, GlobalAveragePooling2D, Input
 from tensorflow.keras.utils import to_categorical
 
-from tensorflow.keras.applications.keras_efficientnets import EfficientNetB5
+from keras_efficientnets import EfficientNetB5
 
 # Set seeds to make the experiment more reproducible.
 import tensorflow as tf
