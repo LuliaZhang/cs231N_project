@@ -13,12 +13,12 @@ from sklearn.metrics import confusion_matrix, cohen_kappa_score
 import tensorflow as tf
 from tensorflow import keras
 from keras import backend as K
-from tensorflow.keras.models import Model
+from keras.models import Model
 from keras import optimizers, applications
 from keras.preprocessing.image import ImageDataGenerator
 from keras.callbacks import EarlyStopping, ReduceLROnPlateau, Callback
-from tensorflow.keras.layers import Dense, Dropout, GlobalAveragePooling2D, Input
-from tensorflow.keras.utils import to_categorical
+from keras.layers import Dense, Dropout, GlobalAveragePooling2D, Input
+# from tensorflow.keras.utils import to_categorical
 
 from keras_efficientnets import EfficientNetB5
 # from efficientnet import EfficientNetB5
