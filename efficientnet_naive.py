@@ -124,7 +124,7 @@ for i in range(-5, 0):
 #class_weights = class_weight.compute_class_weight('balanced', np.unique(train['diagnosis'].astype('int').values), train['diagnosis'].astype('int').values)
 
 metric_list = ["accuracy"]
-optimizer = tf.keras.optimizers.Adam(lr=WARMUP_LEARNING_RATE)
+optimizer = keras.optimizers.Adam(lr=WARMUP_LEARNING_RATE)
 model.compile(optimizer=optimizer, loss="categorical_crossentropy",  metrics=metric_list)
 model.summary()
 
