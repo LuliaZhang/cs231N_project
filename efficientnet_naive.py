@@ -26,13 +26,13 @@ from keras_efficientnets import EfficientNetB5
 import tensorflow as tf
 # import tensorflow_datasets as tfds
 
-def seed_everything(seed=0):
-    random.seed(seed)
-    os.environ['PYTHONHASHSEED'] = str(seed)
-    np.random.seed(seed)
-    tf.random.set_seed(0)
+# def seed_everything(seed=0):
+#     random.seed(seed)
+#     os.environ['PYTHONHASHSEED'] = str(seed)
+#     np.random.seed(seed)
+#     tf.random.set_seed(0)
 
-seed_everything()
+# seed_everything()
 
 sns.set(style="whitegrid")
 warnings.filterwarnings("ignore")
