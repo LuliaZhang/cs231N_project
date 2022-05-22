@@ -149,7 +149,7 @@ es = EarlyStopping(monitor='val_loss', mode='min', patience=ES_PATIENCE, restore
 rlrop = ReduceLROnPlateau(monitor='val_loss', mode='min', patience=RLROP_PATIENCE, factor=DECAY_DROP, min_lr=1e-6, verbose=1)
 
 callback_list = [es, rlrop]
-optimizer = tf.keras.optimizers.Adam(lr=LEARNING_RATE)
+optimizer = keras.optimizers.Adam(lr=LEARNING_RATE)
 model.compile(optimizer=optimizer, loss="categorical_crossentropy",  metrics=metric_list)
 model.summary()
 
