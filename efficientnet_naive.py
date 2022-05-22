@@ -24,7 +24,6 @@ from tensorflow.keras.utils import to_categorical
 from tensorflow.keras.applications import EfficientNetB5
 
 # Set seeds to make the experiment more reproducible.
-import tensorflow as tf
 # import tensorflow_datasets as tfds
 
 # def seed_everything(seed=0):
